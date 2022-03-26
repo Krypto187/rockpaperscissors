@@ -15,27 +15,47 @@ function playRound(playerSelection, computerSelection) {
     let cSelect = "" + computerSelection;
     cSelect = cSelect.toLowerCase();
     if (pSelect == cSelect) {
-        console.log(`Draw! ${playerSelection} is the same as ${computerSelection}`);
+        return (`Draw! ${playerSelection} is the same as ${computerSelection}`);
 
     } else if (pSelect == "rock" && cSelect == "paper") {
-        console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
+        return (`You lost! ${computerSelection} beats ${playerSelection}`);
 
     } else if (pSelect == "rock" && cSelect == "scissor") {
-        console.log(`You Won! ${playerSelection} beats ${computerSelection}`);
+        return (`You won! ${playerSelection} beats ${computerSelection}`);
 
     } else if (pSelect == "paper" && cSelect == "rock") {
-        console.log(`You Won! ${playerSelection} beats ${computerSelection}`);
+        return (`You won! ${playerSelection} beats ${computerSelection}`);
 
     } else if (pSelect == "paper" && cSelect == "scissor") {
-        console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
+        return (`You lost! ${computerSelection} beats ${playerSelection}`);
 
     } else if (pSelect == "scissor" && cSelect == "rock") {
-        console.log(`You lost! ${computerSelection} beats ${playerSelection}`);
+        return (`You lost! ${computerSelection} beats ${playerSelection}`);
 
     } else if (pSelect == "scissor" && cSelect == "paper") {
-        console.log(`You Won! ${playerSelection} beats ${computerSelection}`);
+        return (`You won! ${playerSelection} beats ${computerSelection}`);
 
     }
 }
 
-playRound("RoCK", computerPlay());
+function game(rounds) {
+    let lose = 0;
+    let win = 0;
+    for (let i = 1; i < rounds; i++) {
+        let player = prompt("Rock, Paper or Scissor?");
+        let score = "" + playRound(player, computerPlay());
+        if (score.includes("lost")) {
+            lose++;
+        } else if (score.includes("won")) {
+            win++;
+        }
+        console.log(score);
+    }
+    if (lose < win) {
+        console.log("You won! GZ!");
+    } else {
+        console.log("You lost, noob");
+    }
+}
+
+game(5);

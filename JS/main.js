@@ -38,24 +38,41 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(rounds) {
-    let lose = 0;
-    let win = 0;
-    for (let i = 1; i < rounds; i++) {
-        let player = prompt("Rock, Paper or Scissor?");
-        let score = "" + playRound(player, computerPlay());
-        if (score.includes("lost")) {
-            lose++;
-        } else if (score.includes("won")) {
-            win++;
-        }
-        console.log(score);
-    }
-    if (lose < win) {
-        console.log("You won! GZ!");
-    } else {
-        console.log("You lost, noob");
-    }
-}
+const btnRock = document.querySelector(".rock");
+const btnPaper = document.querySelector(".paper");
+const btnScissor = document.querySelector(".scissor");
 
-game(5);
+btnPaper.addEventListener("click", function() {
+    alert(playRound(btnPaper.textContent, computerPlay()));
+})
+
+btnRock.addEventListener("click", function() {
+    alert(playRound(btnRock.textContent, computerPlay()))
+
+})
+
+btnScissor.addEventListener("click", function() {
+    alert(playRound(btnScissor.textContent, computerPlay()))
+})
+
+// function game(rounds) {
+//     let lose = 0;
+//     let win = 0;
+//     for (let i = 1; i < rounds; i++) {
+//         let player = prompt("Rock, Paper or Scissor?");
+//         let score = "" + playRound(player, computerPlay());
+//         if (score.includes("lost")) {
+//             lose++;
+//         } else if (score.includes("won")) {
+//             win++;
+//         }
+//         console.log(score);
+//     }
+//     if (lose < win) {
+//         console.log("You won! GZ!");
+//     } else {
+//         console.log("You lost, noob");
+//     }
+// }
+
+// game(5);

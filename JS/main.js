@@ -8,6 +8,8 @@ function computerPlay() {
         return "Scissor";
     }
 }
+let pScore = 0;
+let cScore = 0;
 
 function playRound(playerSelection, computerSelection) {
     let pSelect = "" + playerSelection;
@@ -18,42 +20,104 @@ function playRound(playerSelection, computerSelection) {
         return (`Draw! ${playerSelection} is the same as ${computerSelection}`);
 
     } else if (pSelect == "rock" && cSelect == "paper") {
+        cScore += 1;
         return (`You lost! ${computerSelection} beats ${playerSelection}`);
 
+
     } else if (pSelect == "rock" && cSelect == "scissor") {
+        pScore += 1;
         return (`You won! ${playerSelection} beats ${computerSelection}`);
 
     } else if (pSelect == "paper" && cSelect == "rock") {
+        pScore += 1;
         return (`You won! ${playerSelection} beats ${computerSelection}`);
 
     } else if (pSelect == "paper" && cSelect == "scissor") {
+        cScore += 1;
         return (`You lost! ${computerSelection} beats ${playerSelection}`);
 
     } else if (pSelect == "scissor" && cSelect == "rock") {
+        cScore += 1;
         return (`You lost! ${computerSelection} beats ${playerSelection}`);
 
     } else if (pSelect == "scissor" && cSelect == "paper") {
+        pScore += 1;
         return (`You won! ${playerSelection} beats ${computerSelection}`);
 
     }
 }
-
+/* Select elements */
 const btnRock = document.querySelector(".rock");
 const btnPaper = document.querySelector(".paper");
 const btnScissor = document.querySelector(".scissor");
+const divResult = document.querySelector(".results");
+const result = document.createElement("p");
+const playerScore = document.createElement("p");
+const computerScore = document.createElement("p");
 
+
+/* Add functionality */
+
+playerScore.textContent = "0";
+computerScore.textContent = "0";
 btnPaper.addEventListener("click", function() {
-    alert(playRound(btnPaper.textContent, computerPlay()));
+    result.textContent = playRound(btnPaper.textContent, computerPlay());
+    if (pScore == 5) {
+        alert("You won!")
+        pScore = 0;
+        cScore
+        return;
+    } else if (cScore == 5) {
+        alert("You lost! GG noob")
+        pScore = 0;
+        cScore = 0;
+        return;
+    }
+    playerScore.textContent = pScore;
+    computerScore.textContent = cScore;
+
 })
 
 btnRock.addEventListener("click", function() {
-    alert(playRound(btnRock.textContent, computerPlay()))
+    result.textContent = playRound(btnRock.textContent, computerPlay());
+    if (pScore > 4) {
+        alert("You won!")
+        pScore = 0;
+        cScore = 0;
+        return;
+    } else if (cScore > 4) {
+        alert("You lost! GG noob")
+        pScore = 0;
+        cScore = 0;
+        return;
+    }
+    playerScore.textContent = pScore;
+    computerScore.textContent = cScore;
 
 })
 
 btnScissor.addEventListener("click", function() {
-    alert(playRound(btnScissor.textContent, computerPlay()))
+    result.textContent = playRound(btnScissor.textContent, computerPlay());
+    if (pScore == 5) {
+        alert("You won!")
+        pScore = 0;
+        cScore = 0;
+        return;
+    } else if (cScore == 5) {
+        alert("You lost! GG noob")
+        pScore = 0;
+        cScore = 0;
+        return;
+    }
+    playerScore.textContent = pScore;
+    computerScore.textContent = cScore;
+
 })
+
+/* Add HMTL Elements */
+divResult.appendChild(playerScore)
+divResult.appendChild(result);
+divResult.appendChild(computerScore)
 
 // function game(rounds) {
 //     let lose = 0;
